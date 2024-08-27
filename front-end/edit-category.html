@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Category</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">My Store</a>
+    </nav>
+
+    <div class="container mt-5">
+        <h2>Edit Category</h2>
+        <form id="editCategoryForm" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="categoryId">Category ID</label>
+                <input type="number" class="form-control" id="categoryId" name="categoryId" readonly>
+            </div>
+            <div class="form-group">
+                <label for="categoryName">Category Name</label>
+                <input type="text" class="form-control" id="categoryName" name="categoryName" required>
+            </div>
+            <div class="form-group">
+                <label for="categoryImage">Category Image</label>
+                <input type="file" class="form-control" id="categoryImage" name="categoryImage">
+            </div>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+    </div>
+
+    <script>
+        // Load category details into the form for editing
+        const categoryId = new URLSearchParams(window.location.search).get('categoryId');
+    
+        fetch(`http://localhost:5089/api/Categories/${categoryId}`)
+            .then(response => response.json())
+            .then(category => {
+                document.getElementById('categoryId').value = category.categoryId;
+                document.getElementById('categoryName').value = category.categoryName;
+            })
+            .catch(error => console.error('Error:', error));
+    
+        // Handle form submission for editing the category
+        document.getElementById('editCategoryForm').onsubmit = function(event) {
+            event.preventDefault(); // Stop the form from submitting normally
+    
+            const formData = new FormData(this); // Get form data
+    
+            fetch(`http://localhost:5089/api/Categories/${categoryId}`, {
+                method: 'PUT',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(() => {
+                alert('Category updated successfully!');
+                this.reset(); // Clear the form
+            })
+            .catch(error => console.error('Error:', error));
+        };
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

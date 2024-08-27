@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            height: 100vh;
+        }
+        #sidebar-wrapper {
+            width: 250px;
+            background: #f8f9fa;
+            padding: 15px;
+            border-right: 1px solid #ddd;
+        }
+        #page-content-wrapper {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        table img {
+            width: 100px;
+            height: auto;
+        }
+        .table td, .table th {
+            vertical-align: middle;
+        }
+        .btn-group .btn {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+        <h2>MyWebsite</h2>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="admin-product.html">Product</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="admin-category.html">Category</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div id="page-content-wrapper">
+        <h2>Category</h2>
+        <button class="btn btn-primary mb-3" onclick="window.location.href='add-category.html'">Add Category</button>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th>Category ID</th>
+                    <th>Category Name</th>
+                    <th>Category Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="categoryTableBody">
+                <!-- Dynamic content will be added here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Fetch categories and display them
+        fetch('http://localhost:5089/api/Categories')
+            .then(response => response.json())
+            .then(categories => {
+                const categoryTableBody = document.getElementById('categoryTableBody');
+                categories.forEach(category => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${category.categoryId}</td>
+                        <td>${category.categoryName}</td>
+                        <td><img src="${category.categoryImage}" alt="${category.categoryName}"></td>
+                        <td>
+                            <div class="btn-group">
+                                <a href="edit-category.html?categoryId=${category.categoryId}" class="btn btn-primary">Edit</a>
+                                
+                                <button class="btn btn-danger" onclick="deleteCategory(${category.categoryId})">Delete</button>
+                            </div>
+                        </td>
+                    `;
+                    categoryTableBody.appendChild(row);
+                });
+            })
+            .catch(error => console.error('Error fetching categories:', error));
+
+        // Function to delete a category
+        function deleteCategory(categoryId) {
+            if (confirm('Are you sure you want to delete this category?')) {
+                fetch(`http://localhost:5089/api/Categories/${categoryId}`, {
+                    method: 'DELETE'
+                })
+                .then(() => {
+                    alert('Category deleted successfully!');
+                    location.reload();
+                })
+                .catch(error => console.error('Error deleting category:', error));
+            }
+        }
+    </script>
+</body>
+</html>

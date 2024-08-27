@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">My Store</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="categories.html">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="product.html">Products</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div id="productDetails" class="row">
+            <!-- Product details will be dynamically inserted here -->
+        </div>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('productId');
+
+        fetch(`http://localhost:5089/api/Products/${productId}`)
+            .then(response => response.json())
+            .then(product => {
+                const productDetails = document.getElementById('productDetails');
+
+                const productCard = `
+                    <div class="col-md-6">
+                        <img src="http://localhost:5089${product.productImage}" class="img-fluid" alt="${product.productName}">
+                    </div>
+                    <div class="col-md-6">
+                        <h2>${product.productName}</h2>
+                        <p>${product.description}</p>
+                        <h4>Price: $${product.price}</h4>
+                        <button class="btn btn-primary">Add to Cart</button>
+                        <a href="edit-product.html?productId=${product.productId}" class="btn btn-secondary mt-3">Edit Product</a>
+                    </div>
+                `;
+
+                productDetails.innerHTML = productCard;
+            })
+            .catch(error => {
+                const productDetails = document.getElementById('productDetails');
+                productDetails.innerHTML = '<p class="text-danger">Product details could not be loaded.</p>';
+                console.error('Error fetching product details:', error);
+            });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

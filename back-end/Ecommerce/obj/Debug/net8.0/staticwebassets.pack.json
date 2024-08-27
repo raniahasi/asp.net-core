@@ -1,0 +1,49 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Orange\\Desktop\\projects\\Ecommerce\\Ecommerce\\wwwroot\\uploads\\images\\4f1075ad-9a80-4b07-b8d3-26d010de7c75.png",
+      "PackagePath": "staticwebassets\\uploads\\images\\4f1075ad-9a80-4b07-b8d3-26d010de7c75.png"
+    },
+    {
+      "Id": "C:\\Users\\Orange\\Desktop\\projects\\Ecommerce\\Ecommerce\\wwwroot\\uploads\\images\\a407b2c2-b0db-4c87-b7f9-fe8233b2b316.png",
+      "PackagePath": "staticwebassets\\uploads\\images\\a407b2c2-b0db-4c87-b7f9-fe8233b2b316.png"
+    },
+    {
+      "Id": "C:\\Users\\Orange\\Desktop\\projects\\Ecommerce\\Ecommerce\\wwwroot\\uploads\\images\\a9b4629a-7315-46b8-8b0e-c6f511eb852d.png",
+      "PackagePath": "staticwebassets\\uploads\\images\\a9b4629a-7315-46b8-8b0e-c6f511eb852d.png"
+    },
+    {
+      "Id": "C:\\Users\\Orange\\Desktop\\projects\\Ecommerce\\Ecommerce\\wwwroot\\uploads\\images\\ab2bb052-4195-4890-9b04-0f772c36ff11.png",
+      "PackagePath": "staticwebassets\\uploads\\images\\ab2bb052-4195-4890-9b04-0f772c36ff11.png"
+    },
+    {
+      "Id": "C:\\Users\\Orange\\Desktop\\projects\\Ecommerce\\Ecommerce\\wwwroot\\uploads\\images\\c114c976-2741-45f6-8664-98c1429ae81d.png",
+      "PackagePath": "staticwebassets\\uploads\\images\\c114c976-2741-45f6-8664-98c1429ae81d.png"
+    },
+    {
+      "Id": "C:\\Users\\Orange\\Desktop\\projects\\Ecommerce\\Ecommerce\\wwwroot\\uploads\\images\\dcc96a16-f1c4-4181-9919-710a697b7e38.png",
+      "PackagePath": "staticwebassets\\uploads\\images\\dcc96a16-f1c4-4181-9919-710a697b7e38.png"
+    },
+    {
+      "Id": "C:\\Users\\Orange\\Desktop\\projects\\Ecommerce\\Ecommerce\\wwwroot\\uploads\\products\\240bed6c-db3c-4cda-8405-32667f64674c.png",
+      "PackagePath": "staticwebassets\\uploads\\products\\240bed6c-db3c-4cda-8405-32667f64674c.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Ecommerce.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Ecommerce.props",
+      "PackagePath": "build\\Ecommerce.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Ecommerce.props",
+      "PackagePath": "buildMultiTargeting\\Ecommerce.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Ecommerce.props",
+      "PackagePath": "buildTransitive\\Ecommerce.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
